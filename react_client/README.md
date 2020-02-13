@@ -68,3 +68,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 ### `npm install --save react-router-dom` 
+
+### `npm install --save redux react-redux`
+
+### `npm install --save redux-form`
