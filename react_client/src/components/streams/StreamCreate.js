@@ -1,6 +1,10 @@
 import React from "react";
 // Field is a component, reduxForm is a methos. That's why one starts with mayus, other with minus
 import { Field, reduxForm } from "redux-form";
+// connect helper
+import { connect } from "react-redux";
+// action creator
+import { createStream } from "../../reduxStore/actions";
 
 class StreamCreate extends React.Component {
   renderError = ({ error, touched }) => {
@@ -39,9 +43,11 @@ class StreamCreate extends React.Component {
   // }
 
   // NUEVO, CON REDUX-FORM!! ya no hace falta poner event, ni event.preventDefault(), sino pasarle los props
-  onSubmit(formValues) {
+  onSubmit = formValues => {
     console.log(formValues);
-  }
+    // llamar el action creator createStream
+    this.props.createStream(formValues);
+  };
 
   render() {
     console.log(this.props);
@@ -76,10 +82,21 @@ const validate = formValues => {
   return errors;
 };
 
-// reduxForm va a devolver una función, e inmediatamente la llamamos con StreamCreate
-export default reduxForm({
-  // streamCreate es el nombre del form, que va a ser generalmente el proposito de este, con mayus o minus, no importa
+const formWrapped = reduxForm({
   form: "streamCreate",
-  // pasarle a reduxForm validate function that we just created
   validate
 })(StreamCreate);
+
+export default connect(null, { createStream })(formWrapped);
+
+// // reduxForm va a devolver una función, e inmediatamente la llamamos con StreamCreate
+// export default reduxForm({
+//   // streamCreate es el nombre del form, que va a ser generalmente el proposito de este, con mayus o minus, no importa
+//   form: "streamCreate",
+//   // pasarle a reduxForm validate function that we just created
+//   validate
+// })(StreamCreate);
+
+// Para añadir connect, y como ya tengo reduxForm, se podría poner connect()(reduxForm({form: "streamCreate",validate})(StreamCreate)), pero hay otra manera mejor!!!
+
+// guardar en una const todo el reduxForm(con su contenido), y exportar connect()(formWrapped);

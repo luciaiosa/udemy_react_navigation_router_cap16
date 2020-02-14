@@ -72,3 +72,20 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ### `npm install --save redux react-redux`
 
 ### `npm install --save redux-form`
+
+Generate a package.json file to install JSON Server library:
+### `cd ..`
+### `mkdir api`
+### `cd api`
+### `npm init`
+### `npm install --save json-server`
+
+Add db.json file
+Modify package.json file: remove scripts (test...) and add scripts ("start": "json-server -p 3001 -w db.json")
+### `npm start`
+
+### `npm install --save axios redux-thunk`
+For asyncronous requests
+
+### `npm install --save lodash`
+Librery (offers methods) used for simplify the managing of objects, arrays, etc.
