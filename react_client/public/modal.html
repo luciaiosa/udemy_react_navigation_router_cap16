@@ -1,0 +1,52 @@
+<head>
+    <style>
+        .sidebar {
+            position: fixed;
+            top:0;
+            left: 0;
+            height: 100vh;
+            width: 300px;
+            background-color: green;
+        }
+        .content {
+            margin-left: 300px;
+        }
+        .modal-body {
+            height: 30%;
+            width: 30%;
+            margin: auto;
+            background-color: white;
+        }
+        .modal {
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            background-color: grey;
+            left: 0;
+            top: 0;
+            /* se usa para ponerse encima del sidebar, que por defecto tiene z-index: 0
+            El que tiene mayor z-index, se pone encima!!! */
+            z-index: 10;
+        }
+        .positioned {
+            position: relative;
+            z-index: 0;
+        }
+        /* si hay un div con position: relative, y un z-index, aunque sea 0, se crea un stacking content en css */
+    </style>
+</head>
+<body> 
+    <!-- En lugar de que el modal este dentro de posotioned div, hago que sea hijo del body!!! -->
+    <div class="modal">
+        <div class="modal-body">
+            <h1>I am a modal</h1>
+        </div>
+    </div>
+    <div class="positioned">
+        dfghjklj
+    </div>
+    <!-- .positioned tiene el mismo z-index que el .modal, y como el sidebar está después, hace que el modal no se situe encima del sidebar!!! -->
+    <div class="sidebar">I am a sidebar</div>
+    <div class="content"><h1>I am a content</h1></div>
+</body>
+<!-- to access this html: localhost:3000/modal.html -->

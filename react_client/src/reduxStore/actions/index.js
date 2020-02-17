@@ -8,6 +8,7 @@ import {
   FETCH_STREAMS
 } from "../../constants/storeActionTypes";
 import axios_instance from "../../apis/streams";
+import history from "../../history";
 
 export const signIn = userId => {
   return {
@@ -33,6 +34,11 @@ export const createStream = formValues => async (dispatch, getState) => {
   });
   // dispatch an action
   dispatch({ type: CREATE_STREAM, payload: response.data });
+  // DO SOME PROGRAMMATIC NAVIGATION TO GET THE USER BACK TO THE ROOT ROUTE!!
+  // La idea es navigar de la página Create a la página List sólo cuando la respuesta no sea un error
+
+  // push es para navegar a otra pagina!!!
+  history.push("/");
 };
 
 // GET STREAMS
@@ -49,8 +55,10 @@ export const fetchStream = id => async dispatch => {
 
 // PUT EDIT STREAM
 export const editStream = (id, formValues) => async dispatch => {
-  const response = await axios_instance.put(`/streams/${id}`, formValues);
+  const response = await axios_instance.patch(`/streams/${id}`, formValues);
   dispatch({ type: EDIT_STREAM, payload: response.data });
+  // push es para navegar a otra pagina (el listado)!!!
+  history.push("/");
 };
 
 // DELETE STREAM
@@ -59,4 +67,6 @@ export const deleteStream = id => async dispatch => {
   await axios_instance.delete(`/streams/${id}`);
   // en el payload se manda el id, y se borra el stream en el reducer!!!
   dispatch({ type: DELETE_STREAM, payload: id });
+  // push es para navegar a otra pagina (el listado)!!!
+  history.push("/");
 };
