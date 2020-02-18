@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import StreamCreate from "../streams/StreamCreate";
 import StreamDelete from "../streams/StreamDelete";
 import StreamEdit from "../streams/StreamEdit";
@@ -16,13 +16,16 @@ const App = () => {
       <Router history={history}>
         <div>
           <Header />
-          <Route path="/" exact component={StreamList} />
-          <Route path="/streams/new" exact component={StreamCreate} />
-          {/* pongo path="/streams/edit/:id", con :id, para indicar que el id es una variable!!
-          el nombre (id) puede ser cualquiera, lo que importa son : !! (lo que indica que es una var)  */}
-          <Route path="/streams/edit/:id" exact component={StreamEdit} />
-          <Route path="/streams/delete/:id" exact component={StreamDelete} />
-          <Route path="/streams/show/:id" exact component={StreamShow} />
+          {/* Switch mira todas las rutas, y solo va a mostrar la primera ruta que encuentra que coincide con el path, nada más */}
+          <Switch>
+            <Route path="/" exact component={StreamList} />
+            <Route path="/streams/new" exact component={StreamCreate} />
+            {/* pongo path="/streams/edit/:id", con :id, para indicar que el id es una variable!!
+            el nombre (id) puede ser cualquiera, lo que importa son : !! (lo que indica que es una var)  */}
+            <Route path="/streams/edit/:id" exact component={StreamEdit} />
+            <Route path="/streams/delete/:id" exact component={StreamDelete} />
+            <Route path="/streams/:id" exact component={StreamShow} />
+          </Switch>
         </div>
       </Router>
     </div>
