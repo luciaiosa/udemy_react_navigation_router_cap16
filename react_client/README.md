@@ -89,3 +89,27 @@ For asyncronous requests
 
 ### `npm install --save lodash`
 Librery (offers methods) used for simplify the managing of objects, arrays, etc.
+
+Node.js implementation of RTMP(protocolo de transporte para llevar audio y video entre el codificador y la plataforma de streaming):
+### `cd ..`
+### `mkdir rtmpserver`
+### `cd rtmpserver`
+### `npm init`
+### `npm install --save node-media-server`
+Copy the code from https://www.npmjs.com/package/node-media-server, npm version, and paste it ina new file, index.js, in folder rtmpserver.
+Modify package.json file: remove scripts (test...) and add scripts ("start": "node index.js")
+### `npm start`
+RTMP server receives streaming videos on port 1935, and make a video available on port 8000 for consumption
+
+
+We need to make sure that all three servers are running for the project to work successfully!!!
+
+Download OBS (Open Broadcaster Software es una aplicación libre y de código abierto para la grabación y transmisión de vídeo por internet (streaming)) from OBS Studio:
+
+sudo apt-get install ffmpeg
+sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt-get update
+sudo apt-get install obs-studio
+
+
+### `npm install --save flv.js`
